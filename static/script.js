@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tableBody.innerHTML = '';
 
             data.forEach(ipo => {
-                // Yahan par company name ko hyperlink banaya gaya hai
                 const companyNameLink = `<a href="/company/${encodeURIComponent(ipo.company_name)}">${ipo.company_name}</a>`;
                 const row = `
                     <tr>
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = '/full_list';
     });
 
-    // Add search functionality
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
         searchInput.addEventListener('input', function() {

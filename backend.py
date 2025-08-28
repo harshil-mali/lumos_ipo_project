@@ -11,13 +11,11 @@ db_connection = mysql.connector.connect(
 )
 
 
-# Home page ko render karne ke liye naya route
 @app.route('/')
 def home():
     return render_template('index.html')
 
 
-# Full list page ko render karne ke liye naya route
 @app.route('/full_list')
 def full_list():
     return render_template('full_list.html')
@@ -43,9 +41,7 @@ def get_ipo_full():
     return jsonify(data)
 
 
-# ... (existing imports)
 
-# ... (existing imports)
 
 @app.route('/company/<company_name>')
 def company_detail(company_name):
@@ -66,10 +62,10 @@ def company_detail(company_name):
     cursor.execute(reservation_query, (company_name,))
     reservation_data = cursor.fetchone()
 
-    # 👉 New: Fetch data from ipo_lot_size table
+    #Fetch data from ipo_lot_size table
     lot_size_query = "SELECT * FROM ipo_lot_size WHERE company_name = %s"
     cursor.execute(lot_size_query, (company_name,))
-    lot_size_data = cursor.fetchall()  # Use fetchall() as there can be multiple rows for different investor types
+    lot_size_data = cursor.fetchone()  # Use fetchall() as there can be multiple rows for different investor types
 
     cursor.close()
 
@@ -80,7 +76,7 @@ def company_detail(company_name):
             company=company_data,
             timeline=timeline_data,
             reservation=reservation_data,
-            lot_size=lot_size_data  # Pass the new data here
+            lot_size=lot_size_data
         )
     else:
         return "Company details not found", 404

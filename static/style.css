@@ -130,7 +130,6 @@ hr {
     transform: translateY(-2px) scale(1.04);
 }
 
-/* Modern container and header styles */
 .container {
     max-width: 1100px;
     margin: 0 auto;
@@ -152,7 +151,6 @@ hr {
     font-weight: 400;
 }
 
-/* Modern table styles */
 .table-responsive {
     width: 100%;
     overflow-x: auto;
@@ -188,7 +186,6 @@ hr {
     transition: background 0.2s;
 }
 
-/* Modern button styles */
 .modern-btn {
     display: inline-block;
     padding: 14px 36px;
@@ -208,7 +205,6 @@ hr {
     transform: translateY(-2px) scale(1.04);
 }
 
-/* Fade-in animation for elements */
 .fade-in {
     opacity: 0;
     animation: fadeIn 1.2s forwards;
@@ -218,7 +214,6 @@ hr {
     to { opacity: 1; transform: none; }
 }
 
-/* Responsive table and layout */
 @media (max-width: 900px) {
     .container {
         padding: 0 6px;
@@ -287,7 +282,6 @@ hr {
     color: #ffb300;
 }
 
-/* Search Bar */
 .search-bar {
     display: flex;
     justify-content: flex-end;
@@ -319,7 +313,6 @@ hr {
     font-size: 1em;
 }
 
-/* Responsive Navigation and Search */
 @media (max-width: 900px) {
     .nav-links { gap: 1em; }
     #search-input { width: 160px; }
