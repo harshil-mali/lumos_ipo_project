@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPO List Summary</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar fade-in">
+        <div class="container nav-flex">
+            <a href="/" class="nav-logo">IPO Dashboard</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/full_list">All IPOs</a></li>
+            </ul>
+        </div>
+    </nav>
+    <header class="main-header">
+        <div class="container">
+            <h1 class="fade-in">IPO List</h1>
+            <p class="subtitle fade-in">Explore the latest IPOs with all key details at a glance</p>
+        </div>
+    </header>
+    <main class="container fade-in">
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search IPOs by name...">
+        </div>
+        <div class="table-responsive">
+            <table id="ipo-table" class="modern-table">
+                <thead>
+                    <tr>
+                        <th>IPO Name</th>
+                        <th>Opening Date</th>
+                        <th>Closing Date</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </div>
+        <div class="center">
+            <a href="/full_list" id="view-more-btn" class="modern-btn">View More</a>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; {{ year }} Your Company Name. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
