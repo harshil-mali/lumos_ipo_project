@@ -67,6 +67,12 @@ def company_detail(company_name):
     cursor.execute(lot_size_query, (company_name,))
     lot_size_data = cursor.fetchone()  # Use fetchall() as there can be multiple rows for different investor types
 
+    # 👉 New: Fetch data from ipo_promoter_tabel
+    promoter_query = "SELECT * FROM ipo_promoter_tabel WHERE company_name = %s"
+    cursor.execute(promoter_query, (company_name,))
+    promoter_data = cursor.fetchone()
+
+
     cursor.close()
 
     if company_data:
@@ -76,7 +82,8 @@ def company_detail(company_name):
             company=company_data,
             timeline=timeline_data,
             reservation=reservation_data,
-            lot_size=lot_size_data
+            lot_size=lot_size_data,
+            promoter=promoter_data
         )
     else:
         return "Company details not found", 404

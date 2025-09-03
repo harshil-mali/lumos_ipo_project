@@ -208,6 +208,34 @@
         </div>
         </div>
 
+    <div class="table-container fade-in">
+    <div class="promoter-table-wrapper">
+        <h3>{{ company.company_name }} Promoter Holding</h3>
+        {% if promoter %}
+<!--        <p class="promoter-names">-->
+<!--            The promoters of the Company are Bhavesh Patel, Vishal Patel, Jayshreeben Patel, Jitendra Kumar Patel and Milcent Appliances Private Limited.-->
+<!--        </p>-->
+        <table class="promoter-holding-table">
+            <tbody>
+                <tr>
+                    <td>Promoter Holding Pre Issue</td>
+                    <td>{{ promoter.prmoter_holding_pre_issue }}</td>
+                </tr>
+                <tr>
+                    <td>Promoter Holding Post Issue</td>
+                    <td>{{ promoter.prmoter_holding_post_issue }}</td>
+                </tr>
+            </tbody>
+        </table>
+        {% else %}
+        <p>No promoter data available for this company.</p>
+        {% endif %}
+        <p class="note">
+            <span class="note-heading">Note :</span> The value will be calculated using Equity Dilution = Share Holding Pre Issue - Share Holding Post Issue
+        </p>
+    </div>
+</div>
+
     <div class="back-link">
         <a href="/">Back to Home</a>
     </div>
