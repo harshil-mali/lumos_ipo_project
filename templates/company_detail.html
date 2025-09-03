@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,7 @@
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="/full_list">All IPOs</a></li>
+                <li><a href="ipo_gmp_page.html"><i class="fas fa-chart-line"></i> GMP</a></li>
             </ul>
         </div>
     </nav>
@@ -235,6 +236,140 @@
         </p>
     </div>
 </div>
+    <div class="table-container fade-in">
+        <div class="about-wrapper">
+            <h3>About {{ about.company_name }}</h3>
+            {% if about %}
+                <p>{{ about.ipo_summary }}</p>
+            {% else %}
+                <p>No "About" section available for this company.</p>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <div class="financial-wrapper">
+    <h3>Company Financials</h3>
+    {% if financial %}
+    <div class="table-responsive">
+        <table class="modern-table financial-table">
+            <thead>
+                <tr>
+                    <th>Period Ended</th>
+                    {% for row in financial %}
+                        <th>{{ row.period_ended }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Assets</td>
+                    {% for row in financial %}
+                        <td>{{ row.assets }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Total Income</td>
+                    {% for row in financial %}
+                        <td>{{ row.total_income }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Profit After Tax</td>
+                    {% for row in financial %}
+                        <td>{{ row.profit_after_tax }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>EBITDA</td>
+                    {% for row in financial %}
+                        <td>{{ row.ebita }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Net Worth</td>
+                    {% for row in financial %}
+                        <td>{{ row.networth }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Reserves and Surplus</td>
+                    {% for row in financial %}
+                        <td>{{ row.reserves_and_surplus }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Total Borrowing</td>
+                    {% for row in financial %}
+                        <td>{{ row.total_borrowing }}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p>No financial data available for this company.</p>
+    {% endif %}
+    </div>
+
+
+
+    <div class="table-container fade-in">
+    <div class="kpi-wrapper">
+        <h3>Key Performance Indicator (KPI)</h3>
+        {% if kpi %}
+        <table class="details-table">
+            <tbody>
+                <tr><td>ROE</td><td>{{ kpi.roe }}</td></tr>
+                <tr><td>ROCE</td><td>{{ kpi.roce }}</td></tr>
+                <tr><td>Debt/Equity</td><td>{{ kpi.debt_equity }}</td></tr>
+                <tr><td>RoNW</td><td>{{ kpi.ronw }}</td></tr>
+                <tr><td>PAT Margin</td><td>{{ kpi.pat_margin }}</td></tr>
+                <tr><td>EBITDA Margin</td><td>{{ kpi.ebitda_margin }}</td></tr>
+                <tr><td>Price to Book Value</td><td>{{ kpi.price_to_book_value }}</td></tr>
+            </tbody>
+        </table>
+        {% else %}
+        <p>No KPI data available for this company.</p>
+        {% endif %}
+    </div>
+
+    <div class="pre-post-wrapper">
+        <h3>Pre/Post IPO</h3>
+        {% if pre_post %}
+        <table class="details-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Pre IPO</th>
+                    <th>Post IPO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>EPS (₹)</td>
+                    <td>{{ pre_post.eps_pre_ipo }}</td>
+                    <td>{{ pre_post.eps_post_ipo }}</td>
+                </tr>
+                <tr>
+                    <td>P/E (x)</td>
+                    <td>{{ pre_post.pe_pre_ipo }}</td>
+                    <td>{{ pre_post.pe_post_ipo }}</td>
+                </tr>
+            </tbody>
+        </table>
+        {% else %}
+        <p>No Pre/Post IPO data available for this company.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+
+
+
 
     <div class="back-link">
         <a href="/">Back to Home</a>

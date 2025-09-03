@@ -20,7 +20,6 @@ def home():
 def full_list():
     return render_template('full_list.html')
 
-
 @app.route('/api/ipo_summary')
 def get_ipo_summary():
     cursor = db_connection.cursor(dictionary=True)
@@ -72,6 +71,24 @@ def company_detail(company_name):
     cursor.execute(promoter_query, (company_name,))
     promoter_data = cursor.fetchone()
 
+    about_query = "SELECT * FROM ipo_about_info WHERE company_name = %s"
+    cursor.execute(about_query, (company_name,))
+    about_data = cursor.fetchone()
+
+    # 👉 New: Fetch data from ipo_financial table
+    financial_query = "SELECT period_ended, assets, total_income, profit_after_tax, ebita,networth, reserves_and_surplus, total_borrowing FROM ipo_financial WHERE company_name = %s ORDER BY period_ended DESC"
+    cursor.execute(financial_query, (company_name,))
+    financial_data = cursor.fetchall()
+
+    kpi_query = "SELECT * FROM ipo_kpi WHERE company_name = %s"
+    cursor.execute(kpi_query, (company_name,))
+    kpi_data = cursor.fetchone()
+
+    # 👉 New: Fetch data from pre_post_ipo table
+    pre_post_query = "SELECT * FROM pre_post_ipo WHERE company_name = %s"
+    cursor.execute(pre_post_query, (company_name,))
+    pre_post_data = cursor.fetchone()
+
 
     cursor.close()
 
@@ -83,7 +100,11 @@ def company_detail(company_name):
             timeline=timeline_data,
             reservation=reservation_data,
             lot_size=lot_size_data,
-            promoter=promoter_data
+            promoter=promoter_data,
+            about=about_data,
+            financial=financial_data,
+            kpi=kpi_data,
+            pre_post=pre_post_data
         )
     else:
         return "Company details not found", 404
